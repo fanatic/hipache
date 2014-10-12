@@ -57,7 +57,7 @@
 
             it('legit data', function (done) {
                 var data = {
-                    remoteAddr: '::1',
+                    fwdFor: '::1',
                     currentTime: 1392511390963,
                     totalTimeSpent: 11,
                     backendTimeSpent: 9,
@@ -67,7 +67,7 @@
                     statusCode: 200,
                     socketBytesWritten: 3236,
                     userAgent: 'curl/7.30.0',
-                    virtualHost: 'mywebsite',
+                    hostHeader: 'mywebsite',
                     logplexToken: 't.12345',
                     backendName: 'web.1'
                 };
@@ -88,7 +88,7 @@
 
             it('legit error data', function (done) {
                 var data = {
-                    remoteAddr: '::1',
+                    fwdFor: '::1',
                     currentTime: 1392511390963,
                     backendTimeSpent: 30000,
                     method: 'GET',
@@ -97,7 +97,7 @@
                     statusCode: 503,
                     socketBytesWritten: 0,
                     userAgent: 'curl/7.30.0',
-                    virtualHost: 'mywebsite',
+                    hostHeader: 'mywebsite',
                     logplexToken: 't.12345',
                     backendName: 'web.1',
                     errorCode: 'H12',

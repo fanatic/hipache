@@ -8,7 +8,7 @@ class SimpleTestCase(base.TestCase):
         """ Simple test: valid backend """
         port = 2080
         self.spawn_httpd(port)
-        self.register_frontend('foobar', ['http://localhost:{0}'.format(port)])
+        self.register_frontend('foobar', 'foobar', ['http://localhost:{0}'.format(port)+';web.1'])
         self.assertEqual(self.http_request('foobar'), 200)
 
     def test_multiple_backends(self):
@@ -17,10 +17,10 @@ class SimpleTestCase(base.TestCase):
         self.spawn_httpd(port)
         self.spawn_httpd(port + 1)
         self.spawn_httpd(port + 2)
-        self.register_frontend('foobar', [
-            'http://localhost:{0}'.format(port),
-            'http://localhost:{0}'.format(port + 1),
-            'http://localhost:{0}'.format(port + 2)
+        self.register_frontend('foobar', 'foobar', [
+            'http://localhost:{0}'.format(port)+';web.1',
+            'http://localhost:{0}'.format(port + 1)+';web.2',
+            'http://localhost:{0}'.format(port + 2)+';web.3'
             ])
         # Let's make 10 request to make sure we reach everyone
         for i in xrange(10):
@@ -36,9 +36,9 @@ class SimpleTestCase(base.TestCase):
         self.spawn_httpd(port, code=502)
         self.spawn_httpd(port + 1, code=200)
         # Duplicating the backend in the conf
-        self.register_frontend('foobar', [
-            'http://localhost:{0}'.format(port),
-            'http://localhost:{0}'.format(port + 1)
+        self.register_frontend('foobar', 'foobar', [
+            'http://localhost:{0}'.format(port)+';web.1',
+            'http://localhost:{0}'.format(port + 1)+';web.2'
             ])
         # Generate some traffic to force the failing one to be removed
         codes = []

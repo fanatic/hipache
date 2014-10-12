@@ -92,8 +92,8 @@ class TestCase(unittest.TestCase):
         if pid in self._httpd_pids:
             self._httpd_pids.remove(pid)
 
-    def register_frontend(self, frontend, backends_url):
-        self.redis.rpush('frontend:{0}'.format(frontend), frontend, *backends_url)
+    def register_frontend(self, frontend, service_config, backends_url):
+        self.redis.rpush('frontend:{0}'.format(frontend), service_config + ';t.12345', *backends_url)
         self._frontends.append(frontend)
 
     def unregister_frontend(self, frontend):
