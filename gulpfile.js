@@ -15,7 +15,7 @@
     var unittests = ['./test/unit/*.js', '!./test/unit/driver-*'];
     var functests = ['./test/functional/*.js'];
     var alltests = ['./test/**/*.js'];
-    var scripts = ['*.js', './bin/*', './lib/**/*.js', './test/**/*.js'];
+    var scripts = ['*.js', './lib/**/*.js', './test/**/*.js'];
 
     gulp.task('hint', function () {
         return gulp.src(scripts)
