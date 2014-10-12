@@ -1,7 +1,7 @@
 {
     "server": {
         "debug": true,
-        "accessLog": "/tmp/proxy2_test_access.log",
+        "accessLog": "syslog:",
         "workers": 2,
         "maxSockets": 100,
         "deadBackendTTL": 30,
