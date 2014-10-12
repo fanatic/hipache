@@ -63,7 +63,7 @@ Basic Hipache configuration is described in a json file. For example:
 
  * __server__: generic server settings, like acceslog location, or number of workers
     * __server.accessLog__: location of the Access logs, the format is the same as
-nginx. Defaults to `/var/log/hipache/access.log` if not specified.
+nginx. For Logplex-style logging, set to 'syslog://logplex-host:port'. Defaults to `/var/log/hipache/access.log` if not specified.
     * __server.workers__: Number of workers to be spawned. You need to request to have at least 1 woker, as the
 master process does not serve any request. Defaults to `10` if not specified.
     * __server.maxSockets__: The maximum number of sockets which can be opened on each backend (per worker). Defaults to `100` if not specified.
